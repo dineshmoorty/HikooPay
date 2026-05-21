@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HikooPay — Register</title>
+    <meta
+      name="description"
+      content="HikooPay — fast UPI & payments, offers, wallet and more"
+    />
+    <meta
+      name="keywords"
+      content="payment, offers, upi, wallet, cashback, HikooPay"
+    />
+    <meta name="theme-color" content="#0f1724" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="assets/logo.svg" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.svg" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script defer src="scripts/app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              hikoo: "#6ee7b7",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="site-header">
+        <img src="assets/logo.svg" alt="HikooPay" class="logo" />
+        <button
+          id="themeToggle"
+          aria-label="Toggle theme"
+          class="ml-3 px-2 py-1 rounded-md text-sm bg-white/5 hover:bg-white/10 dark:bg-slate-800"
+        >
+          🌙
+        </button>
+        <button
+          id="installBtn"
+          aria-label="Install HikooPay"
+          class="ml-2 px-2 py-1 rounded-md text-sm bg-hikoo text-slate-900 dark:bg-hikoo/90 hidden"
+        >
+          Install
+        </button>
+      </header>
+
+      <section
+        class="card glass register-card shadow-xl bg-gradient-to-tr from-white/5 to-white/2 dark:from-slate-900/60 dark:to-slate-900/40"
+      >
+        <h1>Welcome to HikooPay</h1>
+        <p class="muted">
+          Register to send & receive payments, get offers and use UPI.
+        </p>
+        <form id="registerForm" class="form">
+          <div class="field">
+            <label for="fullname">Full name</label>
+            <input
+              id="fullname"
+              name="fullname"
+              type="text"
+              required
+              placeholder="Jasmine Doe"
+            />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+            />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              placeholder="+91 98765 43210"
+            />
+          </div>
+          <div class="field">
+            <label for="upi">Choose UPI id</label>
+            <input
+              id="upi"
+              name="upi"
+              pattern="^[a-zA-Z0-9._-]{3,}$"
+              required
+              placeholder="you@hkd"
+            />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              minlength="6"
+              required
+            />
+          </div>
+          <div class="field check">
+            <input id="tos" name="tos" type="checkbox" required />
+            <label for="tos">I agree to HikooPay terms & privacy</label>
+          </div>
+          <button
+            type="submit"
+            class="btn primary bg-hikoo text-slate-900 dark:bg-hikoo/90 dark:text-white"
+          >
+            Create account
+          </button>
+        </form>
+        <p class="foot muted">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+      </section>
+
+      <footer class="site-footer muted">
+        HikooPay • Secure payments • Offers & UPI
+      </footer>
+    </main>
+
+    <!-- PWA fallback for offline -->
+    <noscript>
+      <p class="muted">JavaScript is required for full functionality.</p>
+    </noscript>
+  </body>
+</html>
