@@ -34,31 +34,46 @@ themeToggle();
 // PWA install prompt handling
 let deferredPrompt = null;
 const installBtn = document.getElementById("installBtn");
+
+// Install button click handler
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) {
+      console.warn("No install prompt available");
+      showToast("Install not available");
+      return;
+    }
+    try {
+      deferredPrompt.prompt();
+      const choice = await deferredPrompt.userChoice;
+      showToast(
+        choice.outcome === "accepted"
+          ? "Install accepted — app installing"
+          : "Install dismissed",
+      );
+      console.log("User choice:", choice.outcome);
+    } catch (err) {
+      console.warn("Install prompt error", err);
+      showToast("Install error: " + err.message);
+    }
+    deferredPrompt = null;
+    if (installBtn) installBtn.classList.add("hidden");
+  });
+}
+
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
+  console.log("beforeinstallprompt fired — install available");
   if (installBtn) {
     installBtn.classList.remove("hidden");
-    installBtn.addEventListener("click", async () => {
-      try {
-        deferredPrompt.prompt();
-        const choice = await deferredPrompt.userChoice;
-        showToast(
-          choice.outcome === "accepted"
-            ? "Install accepted"
-            : "Install dismissed",
-        );
-      } catch (err) {
-        console.warn("Install prompt error", err);
-      }
-      deferredPrompt = null;
-      if (installBtn) installBtn.classList.add("hidden");
-    });
+    showToast("Install app available!");
   }
 });
 
 window.addEventListener("appinstalled", () => {
-  showToast("HikooPay installed");
+  console.log("PWA installed successfully");
+  showToast("HikooPay installed successfully!");
   deferredPrompt = null;
   if (installBtn) installBtn.classList.add("hidden");
 });
