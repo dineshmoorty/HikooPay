@@ -117,3 +117,51 @@ function showToast(text) {
     t.remove();
   }, 3500);
 }
+
+// Diagnostic: check manifest and icon availability to help PWA installability
+async function checkInstallability() {
+  try {
+    console.log("PWA Diagnostics: checking manifest and icons...");
+    const m = await fetch("/manifest.json");
+    if (!m.ok) {
+      console.warn("manifest.json not reachable", m.status);
+      showToast("manifest not reachable");
+      return;
+    }
+    const manifest = await m.json();
+    console.log("manifest:", manifest);
+    if (!manifest.icons || manifest.icons.length === 0) {
+      console.warn("no icons in manifest");
+      showToast("manifest has no icons");
+    }
+    for (const icon of manifest.icons || []) {
+      try {
+        const src = icon.src.startsWith("http")
+          ? icon.src
+          : "/" + icon.src.replace(/^\//, "");
+        const r = await fetch(src, { method: "GET" });
+        console.log("icon", src, r.status, r.headers.get("content-type"));
+        if (!r.ok) showToast("Icon not reachable: " + src);
+      } catch (err) {
+        console.warn("icon fetch failed", icon.src, err);
+        showToast("Icon fetch failed");
+      }
+    }
+    // service worker check
+    if ("serviceWorker" in navigator) {
+      const reg = await navigator.serviceWorker.getRegistration();
+      console.log("serviceWorker registration", reg);
+      if (!reg) showToast("Service worker not registered");
+    } else {
+      console.warn("serviceWorker unsupported");
+      showToast("Service worker not supported");
+    }
+  } catch (err) {
+    console.error("install check error", err);
+  }
+}
+
+// run diagnostics on load
+window.addEventListener("load", () => {
+  checkInstallability();
+});
