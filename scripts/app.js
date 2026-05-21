@@ -6,30 +6,7 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.warn("SW register failed", err));
   });
 }
-
-// Theme handling (dark / light) using Tailwind's class strategy
-const themeToggle = () => {
-  const btn = document.getElementById("themeToggle");
-  if (!btn) return;
-  const setIcon = () => {
-    btn.textContent = document.documentElement.classList.contains("dark")
-      ? "☀️"
-      : "🌙";
-  };
-  btn.addEventListener("click", () => {
-    const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", "" + (isDark ? "dark" : "light"));
-    setIcon();
-  });
-  const saved = localStorage.getItem("theme");
-  if (
-    saved === "dark" ||
-    (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)
-  )
-    document.documentElement.classList.add("dark");
-  setIcon();
-};
-themeToggle();
+// themeToggle();
 
 // PWA install prompt handling
 let deferredPrompt = null;
