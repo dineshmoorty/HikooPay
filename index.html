@@ -36,27 +36,18 @@
   </head>
   <body>
     <main class="page">
-      <header class="site-header">
-        <img src="./assets/Logo.png" alt="HikooPay" class="logo" />
-        <button
-          id="installBtn"
-          aria-label="Install HikooPay"
-          class="m-1 p-1 rounded-md text-sm bg-hikoo text-slate-900 dark:bg-hikoo/90 hidden"
-        >
-          Install
-        </button>
-      </header>
-
       <section
         class="card glass register-card shadow-xl bg-gradient-to-tr from-white/5 to-white/2 dark:from-slate-900/60 dark:to-slate-900/40"
       >
-        <h1>Welcome to HikooPay</h1>
-        <p class="muted">
-          Register to send & receive payments, get offers and use UPI.
-        </p>
+        <div class="card-header">
+          <img src="./assets/Logo.png" alt="HikooPay logo" class="logo" />
+          <!-- <h1>HIKOO Pay</h1> -->
+          <p class="muted tagline">Pay simple and Fast</p>
+        </div>
+
         <form id="registerForm" class="form">
           <div class="field">
-            <label for="fullname">Full name</label>
+            <label for="fullname">Name</label>
             <input
               id="fullname"
               name="fullname"
@@ -66,17 +57,7 @@
             />
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              placeholder="you@example.com"
-            />
-          </div>
-          <div class="field">
-            <label for="phone">Phone</label>
+            <label for="phone">Mobile number</label>
             <input
               id="phone"
               name="phone"
@@ -86,23 +67,13 @@
             />
           </div>
           <div class="field">
-            <label for="upi">Choose UPI id</label>
+            <label for="email">Email address</label>
             <input
-              id="upi"
-              name="upi"
-              pattern="^[a-zA-Z0-9._-]{3,}$"
+              id="email"
+              name="email"
+              type="email"
               required
-              placeholder="you@hkd"
-            />
-          </div>
-          <div class="field">
-            <label for="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              minlength="6"
-              required
+              placeholder="you@example.com"
             />
           </div>
           <div class="field check">
@@ -116,14 +87,24 @@
             Create account
           </button>
         </form>
+        <div class="download-section">
+          <button
+            type="button"
+            id="installBtn"
+            class="btn secondary download-btn"
+            aria-label="Install HikooPay app"
+          >
+            Download app
+          </button>
+        </div>
         <p class="foot muted">
           Already have an account? <a href="login.html">Sign in</a>
         </p>
       </section>
 
-      <footer class="site-footer muted">
+      <!-- <footer class="site-footer muted">
         HikooPay • Secure payments • Offers & UPI
-      </footer>
+      </footer> -->
     </main>
 
     <!-- PWA fallback for offline -->

@@ -45,6 +45,22 @@ body {
   padding: 2rem;
   border-radius: 14px;
   box-shadow: 0 10px 40px rgba(3, 7, 18, 0.08);
+  text-align: center;
+}
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.card-header .logo {
+  height: 72px;
+  width: auto;
+}
+.card-header .tagline {
+  margin: 0;
+  font-weight: 600;
 }
 .glass {
   background: linear-gradient(
@@ -72,11 +88,13 @@ body {
 .field {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 .field label {
   font-size: 0.85rem;
   color: var(--muted);
   margin-bottom: 0.35rem;
+  text-align: left;
 }
 .field input {
   padding: 0.75rem 0.85rem;
@@ -96,10 +114,25 @@ body {
   border: 0;
   cursor: pointer;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn.primary {
   background: linear-gradient(90deg, var(--accent), #34d399);
   color: #04313a;
+}
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: #053224;
+  border: 1px solid rgba(3, 7, 18, 0.08);
+}
+.download-section {
+  margin-top: 1rem;
+}
+.btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.98);
 }
 .foot {
   margin-top: 1rem;
